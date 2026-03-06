@@ -1,0 +1,438 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+/* ========================================
+   STEW DESIGN SYSTEM — Obsidian & Gold
+   ======================================== */
+
+:root {
+  /* Colors */
+  --black: #000000;
+  --obsidian: #0a0a0a;
+  --surface: #0c0c0c;
+  --surface-hover: #141414;
+  --lime: #d4a853;
+  --lime-dim: rgba(212, 168, 83, 0.3);
+  --lime-subtle: rgba(212, 168, 83, 0.1);
+  --emerald: #10b981;
+  --white-primary: #ebebeb;
+  --white-60: rgba(255, 255, 255, 0.6);
+  --white-30: rgba(255, 255, 255, 0.3);
+  --white-10: rgba(255, 255, 255, 0.1);
+  --white-05: rgba(255, 255, 255, 0.05);
+  --white-03: rgba(255, 255, 255, 0.03);
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-blur: blur(16px);
+
+  /* Fresher persona */
+  --fresher-accent: #f59e0b;
+  --fresher-bg: rgba(245, 158, 11, 0.08);
+  --fresher-border: rgba(245, 158, 11, 0.2);
+
+  /* Investor persona */
+  --investor-accent: #06b6d4;
+  --investor-bg: rgba(6, 182, 212, 0.08);
+  --investor-border: rgba(6, 182, 212, 0.2);
+
+  /* Typography */
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Spacing */
+  --radius-sm: 0.75rem;
+  --radius-md: 1.5rem;
+  --radius-lg: 2rem;
+  --radius-xl: 2.5rem;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-default: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--white-primary);
+  background: var(--black);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ======== FLOATING SHELL ======== */
+.site-shell {
+  max-width: 1600px;
+  margin: 0 auto;
+  background: var(--surface);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  ring: 1px solid var(--white-10);
+  border: 1px solid var(--white-10);
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+.site-shell::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.site-shell::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.015;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ======== GLASS CARD ======== */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  transition: var(--transition-default);
+}
+
+.glass-card:hover {
+  border-color: rgba(212, 168, 83, 0.25);
+}
+
+/* ======== BUTTONS ======== */
+.btn-lime {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--lime);
+  color: var(--black);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.85rem 2rem;
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 30px var(--lime-dim);
+  transition: var(--transition-default);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.btn-lime:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 50px var(--lime-dim);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--white-primary);
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.85rem 2rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--white-10);
+  cursor: pointer;
+  transition: var(--transition-default);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.btn-ghost:hover {
+  border-color: var(--white-30);
+  background: var(--white-05);
+}
+
+/* ======== SYSTEM STATUS TAG ======== */
+.status-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 10px;
+  color: var(--white-60);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--lime);
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ======== FLOAT ANIMATION ======== */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.float-anim {
+  animation: float 6s infinite ease-in-out;
+}
+
+/* ======== GLOW SPHERES ======== */
+.glow-sphere {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glow-lime {
+  background: radial-gradient(circle, rgba(212, 168, 83, 0.15), transparent 70%);
+}
+
+.glow-emerald {
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.12), transparent 70%);
+}
+
+/* ======== TYPOGRAPHY UTILITIES ======== */
+.heading-xl {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  line-height: 0.85;
+}
+
+.heading-lg {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+
+.heading-md {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--lime);
+}
+
+.text-muted {
+  color: var(--white-60);
+}
+
+.text-dim {
+  color: var(--white-30);
+}
+
+/* ======== SCROLLBAR ======== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--white-10);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--white-30);
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 768px) {
+  .site-shell {
+    border-radius: 0;
+    border: none;
+  }
+}
+
+/* ======== GRADIENT TEXT ======== */
+.gradient-text {
+  background: linear-gradient(135deg, var(--lime), #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ======== PROGRESS BAR ======== */
+.progress-bar-track {
+  width: 100%;
+  height: 8px;
+  background: var(--white-05);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--lime), #c49b40);
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ======== MODAL OVERLAY ======== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+  background: var(--surface);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ======== CHIP / TAG ======== */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid var(--white-10);
+  background: var(--white-03);
+  cursor: pointer;
+  transition: var(--transition-default);
+  color: var(--white-60);
+}
+
+.chip:hover, .chip.active {
+  border-color: var(--lime);
+  color: var(--lime);
+  background: var(--lime-subtle);
+}
+
+/* ======== TYPING DOTS ======== */
+.typing-dots {
+  display: inline-flex;
+  gap: 4px;
+  padding: 0.5rem 0;
+}
+
+.typing-dots span {
+  width: 7px;
+  height: 7px;
+  background: var(--white-30);
+  border-radius: 50%;
+  animation: typingBounce 1.4s infinite ease-in-out;
+}
+
+.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingBounce {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.3; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* ======== FORM INPUTS ======== */
+.input-field {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: var(--white-03);
+  border: 1px solid var(--white-10);
+  border-radius: var(--radius-sm);
+  color: var(--white-primary);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  transition: var(--transition-default);
+}
+
+.input-field:focus {
+  border-color: var(--lime);
+  box-shadow: 0 0 0 3px var(--lime-subtle);
+}
+
+.input-field::placeholder {
+  color: var(--white-30);
+}
+
+select.input-field {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+select.input-field option {
+  background: var(--surface);
+  color: var(--white-primary);
+}
